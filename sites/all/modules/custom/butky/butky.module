@@ -1,0 +1,235 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nhanl
+ * Date: 12/8/2017
+ * Time: 10:45 PM
+ */
+
+/**
+ * Implement hook_menu()
+ */
+function butky_menu() {
+  $items = [];
+  $items['item/cart/%/deleted'] = [
+    'title' => t('Delete cart item.'),
+    'page callback' => 'butky_delete_cart_item',
+    'page arguments' => [2],
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function butky_permission() {
+  return [
+    'administer butky' => [
+      'title' => t('Administer But Ky'),
+      'restrict access' => TRUE,
+    ],
+  ];
+}
+
+/**
+ * Implementation of hook_theme().
+ * Set Theme for kenwood custom
+ */
+function butky_theme() {
+  $items = [];
+  $items['header_top'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'header-top',
+  ];
+  $items['search_form'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'search-form',
+  ];
+  $items['cart_block'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'cart-block',
+  ];
+  $items['menu_block'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'menu-block',
+  ];
+  $items['navbar'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'navbar',
+  ];
+  $items['brand'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'brand',
+  ];
+
+  return $items;
+}
+
+/**
+ * Implement hook_block_info
+ * Create block for But Ky
+ */
+function butky_block_info() {
+  $blocks = [];
+  $blocks['header_top'] = ['info' => t('Header Top')];
+  $blocks['search_form'] = ['info' => t('Search')];
+  $blocks['cart_block'] = ['info' => t('Cart Block')];
+  $blocks['menu_block'] = ['info' => t('Menu Block')];
+  $blocks['navbar'] = ['info' => t('Sidebar Navigation')];
+  $blocks['brand'] = ['info' => t('Brand')];
+
+  return $blocks;
+}
+
+/**
+ * Implement hook_block_view
+ * Create views for block info
+ *
+ * @param $delta
+ *
+ * @return block array
+ */
+function butky_block_view($delta = '') {
+  switch ($delta) {
+    case 'header_top':
+      return [
+        'subject' => t('Header Top'),
+        'content' => butky_header_top(),
+      ];
+      break;
+    case 'search_form':
+      return [
+        'subject' => t('Search'),
+        'content' => butky_search_form(),
+      ];
+      break;
+    case 'cart_block':
+      return [
+        'subject' => t('Cart'),
+        'content' => butky_cart_block(),
+      ];
+      break;
+    case 'menu_block':
+      return [
+        'subject' => t('Menu Block'),
+        'content' => butky_menu_block(),
+      ];
+      break;
+    case 'navbar':
+      return [
+        'subject' => t('Sidebar Navigation'),
+        'content' => butky_navbar_block(),
+      ];
+      break;
+    case 'brand':
+      return [
+        'subject' => t('Brand'),
+        'content' => butky_brand_block(),
+      ];
+      break;
+  }
+}
+
+/**
+ * Implement butky_header_top()
+ */
+function butky_header_top() {
+  global $user;
+  return theme('header_top', ['user' => $user]);
+}
+
+/**
+ * Implement butky_search_form
+ */
+function butky_search_form() {
+  drupal_add_css(drupal_get_path('module', 'butky') . '/css/chosen.css');
+  drupal_add_js(drupal_get_path('module', 'butky') . '/js/chosen.jquery.js');
+  drupal_add_js(drupal_get_path('module', 'butky') . '/js/butky.js');
+  $voca = taxonomy_vocabulary_machine_name_load('category');
+  $terms = taxonomy_get_tree($voca->vid);
+  return theme('search_form', ['terms' => $terms]);
+}
+
+/**
+ * Implement cart block
+ */
+function butky_cart_block() {
+  global $user;
+  $order = FALSE;
+  $qty = 0;
+  $total = 0;
+  $items = [];
+  if ($order = commerce_cart_order_load($user->uid)) {
+    $wrapper = entity_metadata_wrapper('commerce_order', $order);
+    $qty = commerce_line_items_quantity($wrapper->commerce_line_items, commerce_product_line_item_types());
+    $total = $order->commerce_order_total[LANGUAGE_NONE][0]['amount'];
+    $item_ids = [];
+    foreach ($order->commerce_line_items[LANGUAGE_NONE] as $item_id) {
+      $item_ids[] = $item_id['line_item_id'];
+    }
+    $items = commerce_line_item_load_multiple($item_ids);
+  }
+  return theme('cart_block', [
+    'qty' => $qty,
+    'total' => $total,
+    'items' => $items,
+    'order' => $order,
+  ]);
+}
+
+/**
+ * Implement butky_delete_cart_item()
+ */
+function butky_delete_cart_item($line_item_id) {
+  global $user;
+  $order = commerce_cart_order_load($user->uid);
+  commerce_cart_order_product_line_item_delete($order, $line_item_id, $skip_save = TRUE);
+  drupal_goto($_GET['destination']);
+}
+
+/**
+ * Implement butky_menu_block
+ */
+function butky_menu_block() {
+  $query = db_select('menu_links', 'ml')
+    ->fields('ml')
+    ->condition('menu_name', 'main-menu')
+    ->orderBy('weight', 'asc');
+  $result = $query->execute()->fetchAll();
+  $menu = [];
+  foreach($result as $ml){
+    $item = [];
+    $path = $ml->link_path;
+    $path = str_replace('%',$ml->p1,$path);
+    $item['path'] = $path;
+    $item['menu'] = $ml;
+    $menu[$ml->mlid] = $item;
+  }
+  return theme('menu_block',array('links'=>$menu));
+}
+
+/**
+ * Implement butky_navbar_block
+ */
+function butky_navbar_block(){
+  $voca = taxonomy_vocabulary_machine_name_load('category');
+  $terms = taxonomy_get_tree($voca->vid);
+  return theme('navbar', ['terms' => $terms]);
+}
+
+/**
+ * Implement butky_brand_block
+ */
+function butky_brand_block(){
+  $voca = taxonomy_vocabulary_machine_name_load('brand');
+  $terms = taxonomy_get_tree($voca->vid);
+  return theme('brand', ['terms' => $terms]);
+}
