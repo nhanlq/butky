@@ -9,12 +9,48 @@
 /**
  * Implement hook_menu()
  */
+<<<<<<< HEAD
 function butky_menu() {
   $items = [];
   $items['item/cart/%/deleted'] = [
     'title' => t('Delete cart item.'),
     'page callback' => 'butky_delete_cart_item',
     'page arguments' => [2],
+=======
+function butky_menu()
+{
+  $items = [];
+  $items['item/cart/%/deleted'] = [
+      'title' => t('Delete cart item.'),
+      'page callback' => 'butky_delete_cart_item',
+      'page arguments' => [2],
+      'access arguments' => ['access content'],
+      'type' => MENU_CALLBACK,
+  ];
+  $items['butky/cart/%'] = [
+      'title' => t('add cart item.'),
+      'page callback' => 'butky_add_cart_item',
+      'page arguments' => [2],
+      'access arguments' => ['access content'],
+      'type' => MENU_CALLBACK,
+  ];
+  $items['butky/wishlist/%'] = [
+      'title' => t('add cart item.'),
+      'page callback' => 'butky_add_wishlist_item',
+      'page arguments' => [2],
+      'access arguments' => ['access content'],
+      'type' => MENU_CALLBACK,
+  ];
+  $items['contact'] = [
+    'title' => t('Liên hệ.'),
+    'page callback' => 'butky_contact',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['page404'] = [
+    'title' => t('Không tìm thấy trang.'),
+    'page callback' => 'butky_404',
+>>>>>>> dev
     'access arguments' => ['access content'],
     'type' => MENU_CALLBACK,
   ];
@@ -24,12 +60,22 @@ function butky_menu() {
 /**
  * Implements hook_permission().
  */
+<<<<<<< HEAD
 function butky_permission() {
   return [
     'administer butky' => [
       'title' => t('Administer But Ky'),
       'restrict access' => TRUE,
     ],
+=======
+function butky_permission()
+{
+  return [
+      'administer butky' => [
+          'title' => t('Administer But Ky'),
+          'restrict access' => TRUE,
+      ],
+>>>>>>> dev
   ];
 }
 
@@ -37,6 +83,7 @@ function butky_permission() {
  * Implementation of hook_theme().
  * Set Theme for kenwood custom
  */
+<<<<<<< HEAD
 function butky_theme() {
   $items = [];
   $items['header_top'] = [
@@ -68,6 +115,65 @@ function butky_theme() {
     'render element' => 'element',
     'path' => drupal_get_path('module', 'butky') . '/theme',
     'template' => 'brand',
+=======
+function butky_theme()
+{
+  $items = [];
+  $items['header_top'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'header-top',
+  ];
+  $items['search_form'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'search-form',
+  ];
+  $items['cart_block'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'cart-block',
+  ];
+  $items['menu_block'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'menu-block',
+  ];
+  $items['navbar'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'navbar',
+  ];
+  $items['brand'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'brand',
+  ];
+  $items['newsletter'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'newsletter',
+  ];
+  $items['slide'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'slide',
+  ];
+  $items['footer'] = [
+      'render element' => 'element',
+      'path' => drupal_get_path('module', 'butky') . '/theme',
+      'template' => 'footer',
+  ];
+  $items['contact'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'contact',
+  ];
+  $items['not_found'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'not-found',
+>>>>>>> dev
   ];
 
   return $items;
@@ -77,7 +183,12 @@ function butky_theme() {
  * Implement hook_block_info
  * Create block for But Ky
  */
+<<<<<<< HEAD
 function butky_block_info() {
+=======
+function butky_block_info()
+{
+>>>>>>> dev
   $blocks = [];
   $blocks['header_top'] = ['info' => t('Header Top')];
   $blocks['search_form'] = ['info' => t('Search')];
@@ -85,6 +196,12 @@ function butky_block_info() {
   $blocks['menu_block'] = ['info' => t('Menu Block')];
   $blocks['navbar'] = ['info' => t('Sidebar Navigation')];
   $blocks['brand'] = ['info' => t('Brand')];
+<<<<<<< HEAD
+=======
+  $blocks['newsletter'] = ['info' => t('Newsletter')];
+  $blocks['slide'] = ['info' => t('Slide')];
+  $blocks['footer'] = ['info' => t('Footer')];
+>>>>>>> dev
 
   return $blocks;
 }
@@ -97,42 +214,95 @@ function butky_block_info() {
  *
  * @return block array
  */
+<<<<<<< HEAD
 function butky_block_view($delta = '') {
   switch ($delta) {
     case 'header_top':
       return [
         'subject' => t('Header Top'),
         'content' => butky_header_top(),
+=======
+function butky_block_view($delta = '')
+{
+  switch ($delta) {
+    case 'header_top':
+      return [
+          'subject' => t('Header Top'),
+          'content' => butky_header_top(),
+>>>>>>> dev
       ];
       break;
     case 'search_form':
       return [
+<<<<<<< HEAD
         'subject' => t('Search'),
         'content' => butky_search_form(),
+=======
+          'subject' => t('Search'),
+          'content' => butky_search_form(),
+>>>>>>> dev
       ];
       break;
     case 'cart_block':
       return [
+<<<<<<< HEAD
         'subject' => t('Cart'),
         'content' => butky_cart_block(),
+=======
+          'subject' => t('Cart'),
+          'content' => butky_cart_block(),
+>>>>>>> dev
       ];
       break;
     case 'menu_block':
       return [
+<<<<<<< HEAD
         'subject' => t('Menu Block'),
         'content' => butky_menu_block(),
+=======
+          'subject' => t('Menu Block'),
+          'content' => butky_menu_block(),
+>>>>>>> dev
       ];
       break;
     case 'navbar':
       return [
+<<<<<<< HEAD
         'subject' => t('Sidebar Navigation'),
         'content' => butky_navbar_block(),
+=======
+          'subject' => t('Sidebar Navigation'),
+          'content' => butky_navbar_block(),
+>>>>>>> dev
       ];
       break;
     case 'brand':
       return [
+<<<<<<< HEAD
         'subject' => t('Brand'),
         'content' => butky_brand_block(),
+=======
+          'subject' => t('Brand'),
+          'content' => butky_brand_block(),
+      ];
+      break;
+    case 'newsletter':
+      return [
+          'subject' => t('Newsletter'),
+          'content' => butky_newsletter_block(),
+      ];
+      break;
+    case 'slide':
+      return [
+          'subject' => t('Slide'),
+          'content' => butky_slide_block(),
+      ];
+      break;
+    case 'footer':
+      return [
+          'subject' => t('Footer'),
+          'content' => butky_footer_block(),
+>>>>>>> dev
       ];
       break;
   }
@@ -141,7 +311,12 @@ function butky_block_view($delta = '') {
 /**
  * Implement butky_header_top()
  */
+<<<<<<< HEAD
 function butky_header_top() {
+=======
+function butky_header_top()
+{
+>>>>>>> dev
   global $user;
   return theme('header_top', ['user' => $user]);
 }
@@ -149,7 +324,12 @@ function butky_header_top() {
 /**
  * Implement butky_search_form
  */
+<<<<<<< HEAD
 function butky_search_form() {
+=======
+function butky_search_form()
+{
+>>>>>>> dev
   drupal_add_css(drupal_get_path('module', 'butky') . '/css/chosen.css');
   drupal_add_js(drupal_get_path('module', 'butky') . '/js/chosen.jquery.js');
   drupal_add_js(drupal_get_path('module', 'butky') . '/js/butky.js');
@@ -161,7 +341,12 @@ function butky_search_form() {
 /**
  * Implement cart block
  */
+<<<<<<< HEAD
 function butky_cart_block() {
+=======
+function butky_cart_block()
+{
+>>>>>>> dev
   global $user;
   $order = FALSE;
   $qty = 0;
@@ -178,17 +363,31 @@ function butky_cart_block() {
     $items = commerce_line_item_load_multiple($item_ids);
   }
   return theme('cart_block', [
+<<<<<<< HEAD
     'qty' => $qty,
     'total' => $total,
     'items' => $items,
     'order' => $order,
   ]);
+=======
+      'qty' => $qty,
+      'total' => $total,
+      'items' => $items,
+      'order' => $order,
+  ]);
+
+>>>>>>> dev
 }
 
 /**
  * Implement butky_delete_cart_item()
  */
+<<<<<<< HEAD
 function butky_delete_cart_item($line_item_id) {
+=======
+function butky_delete_cart_item($line_item_id)
+{
+>>>>>>> dev
   global $user;
   $order = commerce_cart_order_load($user->uid);
   commerce_cart_order_product_line_item_delete($order, $line_item_id, $skip_save = TRUE);
@@ -198,6 +397,7 @@ function butky_delete_cart_item($line_item_id) {
 /**
  * Implement butky_menu_block
  */
+<<<<<<< HEAD
 function butky_menu_block() {
   $query = db_select('menu_links', 'ml')
     ->fields('ml')
@@ -209,17 +409,40 @@ function butky_menu_block() {
     $item = [];
     $path = $ml->link_path;
     $path = str_replace('%',$ml->p1,$path);
+=======
+function butky_menu_block()
+{
+  $query = db_select('menu_links', 'ml')
+      ->fields('ml')
+      ->condition('menu_name', 'main-menu')
+      ->orderBy('weight', 'asc');
+  $result = $query->execute()->fetchAll();
+  $menu = [];
+  foreach ($result as $ml) {
+    $item = [];
+    $path = $ml->link_path;
+    $path = str_replace('%', $ml->p1, $path);
+>>>>>>> dev
     $item['path'] = $path;
     $item['menu'] = $ml;
     $menu[$ml->mlid] = $item;
   }
+<<<<<<< HEAD
   return theme('menu_block',array('links'=>$menu));
+=======
+  return theme('menu_block', array('links' => $menu));
+>>>>>>> dev
 }
 
 /**
  * Implement butky_navbar_block
  */
+<<<<<<< HEAD
 function butky_navbar_block(){
+=======
+function butky_navbar_block()
+{
+>>>>>>> dev
   $voca = taxonomy_vocabulary_machine_name_load('category');
   $terms = taxonomy_get_tree($voca->vid);
   return theme('navbar', ['terms' => $terms]);
@@ -228,8 +451,110 @@ function butky_navbar_block(){
 /**
  * Implement butky_brand_block
  */
+<<<<<<< HEAD
 function butky_brand_block(){
   $voca = taxonomy_vocabulary_machine_name_load('brand');
   $terms = taxonomy_get_tree($voca->vid);
   return theme('brand', ['terms' => $terms]);
+=======
+function butky_brand_block()
+{
+  $voca = taxonomy_vocabulary_machine_name_load('brand');
+  $terms = taxonomy_get_tree($voca->vid);
+  return theme('brand', ['terms' => $terms]);
+}
+
+/**
+ * Get price node
+ * @param $nid
+ * @return string
+ */
+function _get_price_by_product($nid)
+{
+  $node = node_load($nid);
+  $product = commerce_product_load($node->field_product[LANGUAGE_NONE][0]['product_id']);
+  $currency = $product->commerce_price[LANGUAGE_NONE][0]['amount'];
+  return commerce_currency_format($currency, 'đ');
+}
+
+/**
+ * Format price
+ * @param $nid
+ * @return string
+ */
+function _price_format($amount)
+{
+  return commerce_currency_format($amount, 'đ');
+}
+
+/**
+ * Implement butky_newsletter_block
+ */
+function butky_newsletter_block(){
+  return theme('newsletter');
+}
+
+/**
+ * Implement butky_slide_block
+ */
+function butky_slide_block(){
+  $query = db_select('node','n');
+  $query->fields('n');
+  $query->condition('type','slide');
+  $query->condition('status',1);
+  $query->orderBy('created','DESC');
+  $result = $query->execute()->fetchAll();
+  $nodes = [];
+  if($result){
+    foreach($result as $n){
+      $nodes[$n->nid] = node_load($n->nid);
+    }
+  }
+  return theme('slide',array('nodes'=>$nodes));
+}
+
+function butky_add_cart_item($nid){
+  global $user;
+  $node = node_load($nid);
+  $line_item = commerce_product_line_item_new(commerce_product_load($node->field_product[LANGUAGE_NONE][0]['product_id']));
+  commerce_cart_product_add($user->uid, $line_item);
+  drupal_goto($_GET['destination']);
+}
+
+/**
+ * Implement butky_footer_block
+ */
+function butky_footer_block(){
+  return theme('footer');
+}
+/**
+ * Implement butky_add_wishlist_item
+ */
+function butky_add_wishlist_item($nid){
+  global $user;
+  $node = node_load($nid);
+  $product = commerce_product_load($node->field_product[LANGUAGE_NONE][0]['product_id']);
+  if (!commerce_wishlist_user_has_product_in_wishlist($product->product_id, $user->uid)) {
+    $display_path = '';
+    if ($_GET['destination'] != '') {
+      $display_path = $_GET['destination'];
+    }
+    commerce_wishlist_product_add($product, NULL, $user->uid, $display_path);
+  }
+  drupal_goto($_GET['destination']);
+}
+
+/**
+ * Implement butky_contact
+ */
+function butky_contact(){
+  return theme('contact');
+}
+
+/**
+ * Implement butky_404
+ */
+function butky_404(){
+  return theme('not_found');
+>>>>>>> dev
 }

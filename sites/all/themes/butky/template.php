@@ -80,5 +80,9 @@ function butky_preprocess_page(&$variables) {
   drupal_add_css(drupal_get_path('theme', 'butky') . '/assets/css/rateit.css');
   drupal_add_css(drupal_get_path('theme', 'butky') . '/assets/css/bootstrap-select.min.css');
   drupal_add_css(drupal_get_path('theme', 'butky') . '/assets/css/font-awesome.css');
+<<<<<<< HEAD
+=======
+  drupal_add_css(drupal_get_path('theme', 'butky') . '/assets/css/lightbox.css');
+>>>>>>> dev
 
 }

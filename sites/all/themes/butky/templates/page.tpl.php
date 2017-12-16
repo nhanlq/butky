@@ -8,9 +8,15 @@
 <header class="header-style-1">
 
     <!-- ============================================== TOP MENU ============================================== -->
+<<<<<<< HEAD
     <?php if($page['header_top']): ?>
      <?php print render($page['header_top']); ?>
     <?php endif; ?>
+=======
+  <?php if ($page['header_top']): ?>
+    <?php print render($page['header_top']); ?>
+  <?php endif; ?>
+>>>>>>> dev
     <!-- /.header-top -->
     <!-- ============================================== TOP MENU : END ============================================== -->
     <div class="main-header">
@@ -31,9 +37,15 @@
                     <!-- ============================================================= LOGO : END ============================================================= -->
                 </div>
                 <!-- /.logo-holder -->
+<<<<<<< HEAD
                 <?php if($page['header']): ?>
                     <?php print render($page['header']) ?>
                 <?php endif; ?>
+=======
+              <?php if ($page['header']): ?>
+                <?php print render($page['header']) ?>
+              <?php endif; ?>
+>>>>>>> dev
                 <!-- /.top-search-holder -->
                 <!-- /.top-cart-row -->
             </div>
@@ -46,6 +58,7 @@
     <!-- /.main-header -->
 
     <!-- ============================================== NAVBAR ============================================== -->
+<<<<<<< HEAD
     <?php if($page['nav']): ?>
     <div class="header-nav animate-dropdown">
         <div class="container">
@@ -55,6 +68,17 @@
     </div>
     <!-- /.header-nav -->
     <?php endif; ?>
+=======
+  <?php if ($page['nav']): ?>
+      <div class="header-nav animate-dropdown">
+          <div class="container">
+            <?php print render($page['nav']) ?>
+          </div>
+          <!-- /.container-class -->
+      </div>
+      <!-- /.header-nav -->
+  <?php endif; ?>
+>>>>>>> dev
     <!-- ============================================== NAVBAR : END ============================================== -->
 
 </header>
@@ -64,6 +88,7 @@
     <div class="container">
         <div class="row">
             <!-- ============================================== SIDEBAR ============================================== -->
+<<<<<<< HEAD
             <?php if($page['sidebar_left']): ?>
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
@@ -3887,12 +3912,69 @@
 <?php endif; ?>
 <?php print render($page['content']); ?>
 <!-- /#top-banner-and-menu -->
+=======
+          <?php if ($page['sidebar_left']): ?>
+              <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+                  <!-- ================================== TOP NAVIGATION ================================== -->
+                <?php print render($page['sidebar_left']); ?>
+
+              </div>
+              <!-- /.sidemenu-holder -->
+          <?php endif; ?>
+            <!-- ============================================== SIDEBAR : END ============================================== -->
+            <!-- ============================================== CONTENT ============================================== -->
+
+          <?php if ($page['content_before']): ?>
+              <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+                <?php print render($page['content_before']) ?>
+              </div>
+          <?php endif; ?>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+              <?php if ($messages): ?>
+                  <div id="messages"><div class="section clearfix">
+                      <?php print $messages; ?>
+                      </div></div> <!-- /.section, /#messages -->
+              <?php endif; ?>
+                <a id="main-content"></a>
+              <?php print render($title_prefix); ?>
+              <?php if ($title): ?>
+                  <h1 class="title" id="page-title">
+                    <?php print $title; ?>
+                  </h1>
+              <?php endif; ?>
+              <?php print render($title_suffix); ?>
+              <?php if ($tabs): ?>
+                  <div class="tabs">
+                    <?php print render($tabs); ?>
+                  </div>
+              <?php endif; ?>
+              <?php print render($page['help']); ?>
+              <?php if ($action_links): ?>
+                  <ul class="action-links">
+                    <?php print render($action_links); ?>
+                  </ul>
+              <?php endif; ?>
+              <?php print render($page['content']); ?>
+              <?php print $feed_icons; ?>
+            </div>
+
+
+        </div>
+        <!-- /.homebanner-holder -->
+        <!-- ============================================== CONTENT : END ============================================== -->
+    </div>
+</div>
+<!-- /.container -->
+>>>>>>> dev
 
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
+<<<<<<< HEAD
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
                         <h4 class="module-title">Contact Us</h4>
@@ -4003,12 +4085,18 @@
                     </div>
                     <!-- /.module-body -->
                 </div>
+=======
+                <?php if($page['footer']): ?>
+                <?php print render($page['footer']) ?>
+                <?php endif; ?>
+>>>>>>> dev
             </div>
         </div>
     </div>
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding social">
+<<<<<<< HEAD
                 <ul class="link">
                     <li class="fb pull-left"><a target="_blank" rel="nofollow"
                                                 href="#" title="Facebook"></a>
@@ -4053,6 +4141,13 @@
                             <img src="/sites/all/themes/butky/assets/images/payments/5.png"
                                  alt=""></li>
                     </ul>
+=======
+                <p>Copyright © 2017. License by sieuthibutky.vn. All Right Reserved.</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <div class="clearfix payment-methods">
+                    <p><a href="https://www.sieuthibutky.vn">www.sieuthibutky.vn</a></p>
+>>>>>>> dev
                 </div>
                 <!-- /.payment-methods -->
             </div>
