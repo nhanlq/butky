@@ -813,16 +813,16 @@ function addressfield_data_property_info($name = NULL) {
       'options list' => '_addressfield_country_options_list',
     ),
     'name_line' => array(
-      'label' => t('Full name'),
+      'label' => t('Họ và tên'),
     ),
     'first_name' => array(
-      'label' => t('First name'),
+      'label' => t('Họ'),
     ),
     'last_name' => array(
-      'label' => t('Last name'),
+      'label' => t('Tên'),
     ),
     'organisation_name' => array(
-      'label' => t('Company'),
+      'label' => t('Công ty'),
     ),
     'administrative_area' => array(
       'label' => t('Administrative area (i.e. State / Province)'),
@@ -837,7 +837,7 @@ function addressfield_data_property_info($name = NULL) {
       'label' => t('Dependent locality'),
     ),
     'postal_code' => array(
-      'label' => t('Postal code'),
+      'label' => t('Điện thoại'),
     ),
     'thoroughfare' => array(
       'label' => t('Thoroughfare (i.e. Street address)'),

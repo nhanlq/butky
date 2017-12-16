@@ -60,7 +60,7 @@ function addressfield_token_info() {
     'description' => t('The organisation name value.'),
   );
   $info['name-line'] = array(
-    'name' => t('Full name'),
+    'name' => t('Họ và tên'),
     'description' => t('The name line value of the address.'),
   );
   $info['first-name'] = array(

@@ -34,7 +34,7 @@ function addressfield_format_address_generate(&$format, $address, $context = arr
     '#weight' => 0,
   );
   $format['street_block']['thoroughfare'] = array(
-    '#title' => t('Address 1'),
+    '#title' => t('Địa chỉ'),
     '#tag' => 'div',
     '#attributes' => array(
       'class' => array('thoroughfare'),
@@ -45,7 +45,7 @@ function addressfield_format_address_generate(&$format, $address, $context = arr
     '#required' => TRUE,
   );
   $format['street_block']['premise'] = array(
-    '#title' => t('Address 2'),
+    '#title' => t('Địa chỉ 2'),
     '#tag' => 'div',
     '#attributes' => array(
       'class' => array('premise'),
@@ -65,7 +65,7 @@ function addressfield_format_address_generate(&$format, $address, $context = arr
   $format['locality_block']['#attached']['css'][] = drupal_get_path('module', 'addressfield') . '/addressfield.css';
   $format['locality_block']['postal_code'] = array(
     '#title' => $address_format['postal_code_label'],
-    '#required' => in_array('postal_code', $address_format['required_fields']),
+    '#required' => true,
     '#access' => in_array('postal_code', $address_format['used_fields']),
     '#size' => 10,
     '#maxlength' => 255,

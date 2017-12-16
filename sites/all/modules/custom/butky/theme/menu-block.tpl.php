@@ -39,7 +39,7 @@
                   <?php endforeach; ?>
 
                     <li class="dropdown  navbar-right special-menu">
-                        <a href="/san-pham/khuyen-mai">Sản phẩm khuyến mãi</a></li>
+                        <a href="/sales">Sản phẩm khuyến mãi</a></li>
                 </ul>
                 <!-- /.navbar-nav -->
                 <div class="clearfix"></div>

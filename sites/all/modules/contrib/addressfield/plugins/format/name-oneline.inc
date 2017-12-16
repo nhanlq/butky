@@ -27,7 +27,7 @@ function addressfield_format_name_oneline_generate(&$format, $address) {
     '#access' => !empty($address['country']),
   );
   $format['name_block']['name_line'] = array(
-    '#title' => t('Full name'),
+    '#title' => t('Họ và tên'),
     '#tag' => 'div',
     '#attributes' => array(
       'class' => array('name-block'),

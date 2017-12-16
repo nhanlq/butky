@@ -33,6 +33,18 @@ function butky_menu()
       'access arguments' => ['access content'],
       'type' => MENU_CALLBACK,
   ];
+  $items['contact'] = [
+    'title' => t('Liên hệ.'),
+    'page callback' => 'butky_contact',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
+  $items['page404'] = [
+    'title' => t('Không tìm thấy trang.'),
+    'page callback' => 'butky_404',
+    'access arguments' => ['access content'],
+    'type' => MENU_CALLBACK,
+  ];
   return $items;
 }
 
@@ -100,6 +112,16 @@ function butky_theme()
       'render element' => 'element',
       'path' => drupal_get_path('module', 'butky') . '/theme',
       'template' => 'footer',
+  ];
+  $items['contact'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'contact',
+  ];
+  $items['not_found'] = [
+    'render element' => 'element',
+    'path' => drupal_get_path('module', 'butky') . '/theme',
+    'template' => 'not-found',
   ];
 
   return $items;
@@ -375,4 +397,18 @@ function butky_add_wishlist_item($nid){
     commerce_wishlist_product_add($product, NULL, $user->uid, $display_path);
   }
   drupal_goto($_GET['destination']);
+}
+
+/**
+ * Implement butky_contact
+ */
+function butky_contact(){
+  return theme('contact');
+}
+
+/**
+ * Implement butky_404
+ */
+function butky_404(){
+  return theme('not_found');
 }

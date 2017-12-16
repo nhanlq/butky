@@ -30,9 +30,9 @@ function addressfield_get_address_format($country_code) {
     'used_fields' => array('locality'),
     'required_fields' => array('locality'),
     'dependent_locality_label' => t('Suburb'),
-    'locality_label' => t('City'),
-    'administrative_area_label' => t('Province'),
-    'postal_code_label' => t('Postal code'),
+    'locality_label' => t('Tỉnh/Thành phố'),
+    'administrative_area_label' => t('Tỉnh'),
+    'postal_code_label' => t('Điện thoại'),
     'render_administrative_area_value' => FALSE,
   );
 
